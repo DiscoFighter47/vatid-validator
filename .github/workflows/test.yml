@@ -1,9 +1,9 @@
-name: cicd
+name: test
 
 on:
   push:
     branches:
-      - main
+      - cicd
   pull_request:
     branches:
       - main
