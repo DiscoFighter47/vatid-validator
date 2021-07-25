@@ -36,7 +36,7 @@ type client struct {
 
 func NewClient() Client {
 	return &client{soap.NewClient("http://ec.europa.eu/taxation_customs/vies/services/checkVatService",
-		soap.WithTimeout(time.Second*5)),
+		soap.WithRequestTimeout(time.Second*5)),
 	}
 }
 
