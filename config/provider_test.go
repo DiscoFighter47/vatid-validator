@@ -10,13 +10,9 @@ import (
 )
 
 func TestFileProvider(t *testing.T) {
-	if testing.Short() {
-		t.Skip("")
-	}
-
 	Convey("successful config read", t, func() {
 		clear()
-		os.Setenv("config_file", "../config.example.yml")
+		os.Setenv("CONFIG_FILE", "../config.example.yml")
 		v := viper.New()
 		err := fileProvider(v)
 		Convey("error should be nil", func() {
@@ -29,13 +25,13 @@ func TestFileProvider(t *testing.T) {
 		v := viper.New()
 		err := fileProvider(v)
 		Convey("error should not be nil", func() {
-			So(err.Error(), ShouldEqual, "unable to process environment variable: env: required environment variable \"config_file\" is not set")
+			So(err.Error(), ShouldEqual, "unable to process environment variable: env: required environment variable \"CONFIG_FILE\" is not set")
 		})
 	})
 
 	Convey("file is missing", t, func() {
 		clear()
-		os.Setenv("config_file", "./config.example.yml")
+		os.Setenv("CONFIG_FILE", "./config.example.yml")
 		v := viper.New()
 		err := fileProvider(v)
 		Convey("error should not be nil", func() {

@@ -5,8 +5,10 @@ package euvies
 import (
 	"context"
 	"encoding/xml"
-	"github.com/hooklift/gowsdl/soap"
 	"time"
+
+	"github.com/DiscoFighter47/vatid-validator/config"
+	"github.com/hooklift/gowsdl/soap"
 )
 
 type CheckVatReq struct {
@@ -34,9 +36,9 @@ type client struct {
 	soapClient *soap.Client
 }
 
-func NewClient() Client {
+func NewClient(cnf config.Euvies) Client {
 	return &client{soap.NewClient("http://ec.europa.eu/taxation_customs/vies/services/checkVatService",
-		soap.WithRequestTimeout(time.Second*5)),
+		soap.WithRequestTimeout(time.Second*time.Duration(cnf.Timeout))),
 	}
 }
 

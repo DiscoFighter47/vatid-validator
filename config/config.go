@@ -28,9 +28,9 @@ var once = sync.Once{}
 func GetConfig() Config {
 	once.Do(func() {
 		v := viper.New()
-		key := os.Getenv("config_provider")
+		key := os.Getenv("CONFIG_PROVIDER")
 		if key == "" {
-			log.Fatalln("environment variable missing: [config_provider]")
+			log.Fatalln("environment variable missing: [CONFIG_PROVIDER]")
 		}
 		p, ok := providers[key]
 		if !ok {

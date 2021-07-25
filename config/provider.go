@@ -23,7 +23,7 @@ var providers = map[string]provider{
 
 func fileProvider(v *viper.Viper) error {
 	e := struct {
-		File string `env:"config_file,required"`
+		File string `env:"CONFIG_FILE,required"`
 	}{}
 	if err := env.Parse(&e); err != nil {
 		return fmt.Errorf("unable to process environment variable: %w", err)
