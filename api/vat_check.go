@@ -39,6 +39,7 @@ func (api *vatCheckAPI) check(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "unable to check vat info: " + err.Error(),
 		})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
