@@ -3,12 +3,13 @@ package euvies_test
 import (
 	"testing"
 
+	"github.com/DiscoFighter47/vatid-validator/config"
 	"github.com/DiscoFighter47/vatid-validator/euvies"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestCheckVat(t *testing.T) {
-	client := euvies.NewClient()
+	client := euvies.NewClient(config.Euvies{Timeout: 5})
 	testData := []struct {
 		des         string
 		countryCode string
