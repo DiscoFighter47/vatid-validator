@@ -16,6 +16,8 @@ type checkReq struct {
 	VatID string `uri:"vatid" binding:"required" validate:"regexp=^(DE)?[0-9]{9}$"`
 }
 
+// check returns detail VAT info
+// uses VATID from uri
 func (api *vatCheckAPI) check(c *gin.Context) {
 	req := &checkReq{}
 	if err := c.ShouldBindUri(req); err != nil {

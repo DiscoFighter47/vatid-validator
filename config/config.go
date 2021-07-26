@@ -9,15 +9,18 @@ import (
 	"gopkg.in/validator.v2"
 )
 
+// Config holds all required configurations'
 type Config struct {
 	App    App
 	Euvies Euvies
 }
 
+// App related config
 type App struct {
 	Port int64 `validate:"min=3000,max=9999"`
 }
 
+// Euvies client config
 type Euvies struct {
 	Timeout int `validate:"nonzero"`
 }

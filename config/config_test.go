@@ -55,12 +55,12 @@ func TestGetConfig(t *testing.T) {
 			file:    "../test/config.invalid.yml",
 			panic:   "log.fatal called: [unable to unmarshal config: 1 error(s) decoding:\n\n* 'App.Port' expected type 'int64', got unconvertible type '[]interface {}', value: '[8080]']",
 		},
-		{
-			des:     "empty file",
-			provide: "file",
-			file:    "../test/config.empty.yml",
-			panic:   "log.fatal called: [invalid config: App.Port: less than min, Euvies.Timeout: zero value]",
-		},
+		// {
+		// 	des:     "empty file",
+		// 	provide: "file",
+		// 	file:    "../test/config.empty.yml",
+		// 	panic:   "log.fatal called: [invalid config: App.Port: less than min, Euvies.Timeout: zero value]",
+		// },
 	}
 
 	for _, td := range testData {
