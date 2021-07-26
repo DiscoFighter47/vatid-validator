@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+// provider interface for config provider
 type provider interface {
 	read(*viper.Viper) error
 }
@@ -21,6 +22,7 @@ var providers = map[string]provider{
 	"file": providerFunc(fileProvider),
 }
 
+// fileProvider reads config from a file
 func fileProvider(v *viper.Viper) error {
 	e := struct {
 		File string `env:"CONFIG_FILE,required"`

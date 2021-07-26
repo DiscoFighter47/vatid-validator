@@ -10,6 +10,9 @@ import (
 	"gopkg.in/tylerb/graceful.v1"
 )
 
+// StartServer starts api server
+// server is configurable using cnf parameter
+// requires necessary server dependencies
 func StartServer(cnf config.App, euvies euvies.Client) {
 	vcAPI := &vatCheckAPI{euvies: euvies}
 

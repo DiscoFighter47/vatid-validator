@@ -11,12 +11,14 @@ import (
 	"github.com/hooklift/gowsdl/soap"
 )
 
+// CheckVatReq represents euvies vat check request fields
 type CheckVatReq struct {
 	XMLName     xml.Name `xml:"urn:ec.europa.eu:taxud:vies:services:checkVat:types checkVat"`
 	CountryCode string   `xml:"countryCode,omitempty" json:"countryCode,omitempty"`
 	VatNumber   string   `xml:"vatNumber,omitempty" json:"vatNumber,omitempty"`
 }
 
+// CheckVatResp represents euvies vat check response fields
 type CheckVatResp struct {
 	XMLName     xml.Name     `xml:"urn:ec.europa.eu:taxud:vies:services:checkVat:types checkVatResponse"`
 	CountryCode string       `xml:"countryCode,omitempty" json:"countryCode,omitempty"`
@@ -27,6 +29,7 @@ type CheckVatResp struct {
 	Address     *string      `xml:"address,omitempty" json:"address,omitempty"`
 }
 
+// Client interface for Euvies web api
 type Client interface {
 	CheckVat(request *CheckVatReq) (*CheckVatResp, error)
 	CheckVatContext(ctx context.Context, request *CheckVatReq) (*CheckVatResp, error)
@@ -36,6 +39,8 @@ type client struct {
 	soapClient *soap.Client
 }
 
+// NewClient return soap client for Euvies
+// can be configurable using cnf parameter
 func NewClient(cnf config.Euvies) Client {
 	return &client{soap.NewClient("http://ec.europa.eu/taxation_customs/vies/services/checkVatService",
 		soap.WithRequestTimeout(time.Second*time.Duration(cnf.Timeout))),
